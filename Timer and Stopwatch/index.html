@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width,initial-scale-1.0">
+    <title>StopWatch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        body {
+            font-family: sans-serif;
+            font-size: 10px;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("img.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+
+        }
+
+
+
+        .outer-circle {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            background-color: wheat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .animation-bg {
+            background: linear-gradient(-45deg, rgb(255, 0, 111), yellow, purple, rgb(255, 192, 241), rgb(0, 119, 255), rgb(0, 128, 122));
+            background-size: 400% 400%;
+            animation: gradient 7s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .inner-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: rgba(128, 128, 128, 0.529);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .text {
+            color: white;
+
+
+        }
+
+        .minute {
+            font-size: 43px;
+
+        }
+
+        .sec {
+            font-size: 34px;
+
+        }
+
+        .msec {
+            font-size: 25px;
+
+        }
+
+        .button-wrapper {
+            width: 250px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background-color: rgba(0, 0, 0, 0.616);
+            color: white;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.712);
+            color:black;
+        }
+
+        .laps {
+            list-style: none;
+            color: papayawhip;
+            width: 250px;
+            height: 250px;
+            overflow: auto;
+            position: relative;
+            margin-top: 30px;
+        }
+
+        .laps::-webkit-scrollbar {
+            display: none;
+        }
+
+        .lap-item {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            border: 3px solid black;
+            border-radius: 50px;
+            margin-bottom: 15px;
+
+        }
+
+        .number {
+            color:black;
+        }
+
+        .time-stamp {
+            display: inline-block;
+            margin-left: 25px;
+        }
+
+        .lap-clear-button {
+            display: block;
+            position: fixed;
+            z-index: 1000;
+            bottom: 20px;
+            left: 30%;
+            transform: translate(-20%);
+
+            width: 150px;
+            padding: 10px 0;
+            border-radius: 50px;
+            background-color: rgb(0, 128, 122);
+            border: 5px solid rgb(255, 255, 255);
+            cursor: pointer;
+
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="watch">
+            <div class="outer-circle">
+                <div class="inner-circle">
+                    <span class="text minute">0 :</span>
+                    <span class="text sec"> &nbsp; 0 :</span>
+                    <span class="text msec">&nbsp; 0</span>
+                </div>
+            </div>
+            <div class="button-wrapper">
+                <audio id="audio">
+                    <source src="tic-tac.mp3.mp3" type="audio/mpeg">
+                </audio>
+                <button onclick="reset1()" class="button reset hidden">Reset</button>
+                <button onclick="playPause()" class="button play">Play</button>
+                <button class="button lap hidden">Lap</button>
+            </div>
+            <ul class="laps">
+
+                <button class="lap-clear-button hidden">Clear All</button>
+            </ul>
+        </div>
+    </div>
+
+    <script src="playButton.js"> </script>
+</body>
+
+</html>
